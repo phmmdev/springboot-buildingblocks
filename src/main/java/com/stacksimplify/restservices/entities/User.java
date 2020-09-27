@@ -28,6 +28,9 @@ public class User {
     @Column(name = "SSN", length = 50, nullable = false, unique = true)
     private  String ssn;
 
+    public User() {
+    }
+
     public User(Long id, String username, String firstname, String lastname, String email, String role, String ssn) {
         this.id = id;
         this.username = username;
