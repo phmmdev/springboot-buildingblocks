@@ -22,18 +22,19 @@ import java.util.Optional;
 
 @Validated
 @RestController
+@RequestMapping(value = "/users")
 public class UserController {
 
     @Autowired
     private UserService userService;
 
-    @GetMapping("/users")
+    @GetMapping
     public List<User> getAllUser()
     {
         return  userService.getAllUsers();
     }
 
-    @GetMapping("/users/{id}")
+    @GetMapping("/{id}")
     public Optional<User> getUserById(@PathVariable("id") @Min(1)Long id)
     {
         try {
@@ -45,7 +46,7 @@ public class UserController {
         }
     }
 
-    @GetMapping("/users/byusername/{name}")
+    @GetMapping("/byusername/{name}")
     public User getUserByName(@PathVariable("name") String name) throws  UserNameNotFoundException
     {
         Optional<User> optionalUser = userService.getByUsername(name);
@@ -55,7 +56,7 @@ public class UserController {
         return optionalUser.get();
     }
 
-    @PostMapping("/users")
+    @PostMapping
     public ResponseEntity<Void> createUser(@Valid @RequestBody User user, UriComponentsBuilder builder)
     {
         try {
@@ -70,7 +71,7 @@ public class UserController {
         }
     }
 
-    @PutMapping("/users/{id}")
+    @PutMapping("/{id}")
     public User updateUser(@PathVariable("id") Long id, @RequestBody User user)
     {
         try
@@ -84,7 +85,7 @@ public class UserController {
 
     }
 
-    @DeleteMapping("/users/{id}")
+    @DeleteMapping("/{id}")
     public void deleteUser(@PathVariable("id") Long id)
     {
         userService.deleteUser(id);

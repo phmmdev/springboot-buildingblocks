@@ -3,6 +3,7 @@ import javax.validation.constraints.NotEmpty;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Entity
 @Table(name ="user")
@@ -31,6 +32,9 @@ public class User {
 
     @Column(name = "SSN", length = 50, nullable = false, unique = true)
     private  String ssn;
+
+    @OneToMany(mappedBy = "user")
+    private List<Order> orders;
 
     public User() {
     }
@@ -73,6 +77,10 @@ public class User {
         this.ssn = ssn;
     }
 
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
+
     public Long getId() {
         return id;
     }
@@ -99,6 +107,10 @@ public class User {
 
     public String getSsn() {
         return ssn;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
     }
 
     @Override

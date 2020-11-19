@@ -2,3 +2,9 @@ insert into user values(101, 'pedro101@gmail.com', 'Pedro', 'Moraes', 'admin', '
 insert into user values(102, 'pedro102@gmail.com', 'Pedro', 'Moraes', 'admin', 'ssn102', 'phmmdev102')
 insert into user values(103, 'pedro103@gmail.com', 'Pedro', 'Moraes', 'admin', 'ssn103', 'phmmdev103')
 
+insert into orders values(2001, 'order2001', 101)
+insert into orders values(2002, 'order2002', 101)
+insert into orders values(2003, 'order2003', 101)
+insert into orders values(2004, 'order2004', 102)
+insert into orders values(2005, 'order2005', 102)
+insert into orders values(2006, 'order2006', 103)
