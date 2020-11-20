@@ -1,12 +1,14 @@
 package com.stacksimplify.restservices.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.hateoas.RepresentationModel;
+import org.springframework.transaction.support.ResourceHolderSupport;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "orders")
-public class Order
+public class Order extends RepresentationModel
 {
     @Id
     @GeneratedValue
