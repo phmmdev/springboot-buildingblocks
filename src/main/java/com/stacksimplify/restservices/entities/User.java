@@ -1,4 +1,6 @@
 package com.stacksimplify.restservices.entities;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import net.minidev.json.annotate.JsonIgnore;
 import org.springframework.hateoas.RepresentationModel;
 import org.springframework.transaction.support.ResourceHolderSupport;
 
@@ -10,6 +12,7 @@ import java.util.List;
 
 @Entity
 @Table(name ="user")
+@JsonIgnoreProperties({"firstname", "lastname"})
 public class User extends RepresentationModel {
 
     @Id
@@ -33,6 +36,7 @@ public class User extends RepresentationModel {
     @Column(name = "ROLE", length = 50, nullable = false)
     private  String role;
 
+    @JsonIgnore
     @Column(name = "SSN", length = 50, nullable = false, unique = true)
     private  String ssn;
 
