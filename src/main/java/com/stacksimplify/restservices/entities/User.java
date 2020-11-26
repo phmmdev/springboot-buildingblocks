@@ -1,4 +1,5 @@
 package com.stacksimplify.restservices.entities;
+import com.fasterxml.jackson.annotation.JsonFilter;
 import org.springframework.hateoas.RepresentationModel;
 import org.springframework.transaction.support.ResourceHolderSupport;
 
@@ -10,6 +11,7 @@ import java.util.List;
 
 @Entity
 @Table(name ="user")
+@JsonFilter(value="userFilter")
 public class User extends RepresentationModel {
 
     @Id
