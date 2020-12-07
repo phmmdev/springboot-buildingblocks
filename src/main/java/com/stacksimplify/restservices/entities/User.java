@@ -1,15 +1,10 @@
 package com.stacksimplify.restservices.entities;
-<<<<<<< HEAD
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import net.minidev.json.annotate.JsonIgnore;
-=======
 import com.fasterxml.jackson.annotation.JsonFilter;
->>>>>>> 09-02-SpringBot-Filtering-MappingJacksonValue
+import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.hateoas.RepresentationModel;
-import org.springframework.transaction.support.ResourceHolderSupport;
 
+import javax.swing.text.View;
 import javax.validation.constraints.NotEmpty;
-
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.util.List;
@@ -17,34 +12,42 @@ import java.util.List;
 @Entity
 @Table(name ="user")
 // @JsonIgnoreProperties({"firstname", "lastname"}) -- just a example to how to implement static filters
-@JsonFilter(value="userFilter")
+//@JsonFilter(value="userFilter")
 public class User extends RepresentationModel {
 
     @Id
     @GeneratedValue
+    @JsonView(Views.External.class)
     private Long userid;
 
     @NotEmpty(message="UserName is mandatory field. Please provide username.")
     @Column(name = "USER_NAME", length = 50, nullable = false, unique = true)
+    @JsonView(Views.External.class)
     private String username;
 
     @Size(min=2, message="FirstName should have  at least 2 characters.")
     @Column(name = "FIRST_NAME", length = 50, nullable = false)
+    @JsonView(Views.External.class)
     private  String firstname;
 
     @Column(name = "LAST_NAME", length = 50, nullable = false)
+    @JsonView(Views.External.class)
     private  String lastname;
 
     @Column(name = "EMAIL_ADDRESS", length = 50, nullable = false)
+    @JsonView(Views.External.class)
     private  String email;
 
     @Column(name = "ROLE", length = 50, nullable = false)
+    @JsonView(Views.Internal.class)
     private  String role;
 
     @Column(name = "SSN", length = 50, nullable = false, unique = true)
+    @JsonView(Views.Internal.class)
     private  String ssn;
 
     @OneToMany(mappedBy = "user")
+    @JsonView(Views.External.class)
     private List<Order> orders;
 
     public User() {

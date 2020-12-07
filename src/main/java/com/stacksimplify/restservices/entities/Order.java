@@ -1,6 +1,7 @@
 package com.stacksimplify.restservices.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.hateoas.RepresentationModel;
 import org.springframework.transaction.support.ResourceHolderSupport;
 
@@ -12,7 +13,9 @@ public class Order extends RepresentationModel
 {
     @Id
     @GeneratedValue
+    @JsonView(Views.External.class)
     private Long orderid;
+    @JsonView(Views.External.class)
     private String orderdecription;
 
     @ManyToOne(fetch = FetchType.LAZY)
